@@ -2,7 +2,7 @@
 An R Shiny App for Conway´s and other Games of Life
 
 ## Description
-The goal of this project is an R Shiny App for life-like cellular automata.
+The goal of this project is an R Shiny App for life-like cellular automata
 (see https://en.wikipedia.org/wiki/Life-like_cellular_automaton).
 
 At time point zero, the player uses their mouse to bring some cells in the
