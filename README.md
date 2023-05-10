@@ -11,7 +11,7 @@ Over time, cells in the automaton are then born and survive depending on a set
 of rules.  
 By default, the rules will be those from Conway´s Game of Life  
 (see https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).  
-However, I also aim to implement "Life without Death", "Day and Night", and "Seeds".
+However, I also aim to implement other rules.
 
 It will also be possible to change the color-coding for live and dead cells.
 And the overall look/design will be minimalistic with references to a
