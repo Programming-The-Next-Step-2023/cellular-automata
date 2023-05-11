@@ -6,26 +6,25 @@
 
 
 
-# Import and source ------------------------------------------------------------
+# Source -----------------------------------------------------------------------
 
-library(shiny)
 
 
 # UI ---------------------------------------------------------------------------
 
-ui <- fluidPage(
-  
+ui <- shiny::fluidPage(
+
   # Title ----
-  titlePanel("Life-Like Cells"),
-  
+  shiny::titlePanel("Lively Cells"),
+
   # Sidebar layout with input and output definitions ----
-  sidebarLayout(
-    
+  shiny::sidebarLayout(
+
     # Sidebar panel for inputs ----
-    sidebarPanel(
-      
+    shiny::sidebarPanel(
+
       # Input: Selector for rules ----
-      selectInput(
+      shiny::selectInput(
         inputId = "rule",
         label = "Rule Set",
         choices = c("Life",
@@ -33,15 +32,15 @@ ui <- fluidPage(
                     "Seeds",
                     "Replicator")
       )
-      
+
     ),
-    
+
     # Main panel for displaying outputs ----
-    mainPanel(
-      
+    shiny::mainPanel(
+
     )
-    
+
   )
-  
+
 ) # end UI
 
