@@ -3,7 +3,7 @@
     "path": "~/Documents/GitHub/livelycells/R/app.R",
     "project_path": "R/app.R",
     "type": "r_source",
-    "hash": "3302725373",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1683793308255.0,
@@ -12,8 +12,8 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "23,37",
-        "scrollLine": "17"
+        "cursorPosition": "12,18",
+        "scrollLine": "0"
     },
     "folds": "",
     "lastKnownWriteTime": 1683807565,
