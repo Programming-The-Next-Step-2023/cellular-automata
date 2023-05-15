@@ -8,9 +8,8 @@
 
 # Source -----------------------------------------------------------------------
 
-setwd(paste0(getwd(), "/R"))  # Point to folder with R files
-source("ui.R")
-source("server.R")
+source("./R/ui.R")
+source("./R/server.R")
 
 # Create Shiny App -------------------------------------------------------------
 

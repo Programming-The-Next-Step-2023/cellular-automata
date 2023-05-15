@@ -1,0 +1,26 @@
+{
+    "id": "6E797DDF",
+    "path": "~/Documents/GitHub/livelycells/R/pixeltrix.R",
+    "project_path": "R/pixeltrix.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1683830823245.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "267,36",
+        "scrollLine": "250"
+    },
+    "folds": "4|19|163|0|\n164|17|187|0|\n188|16|227|0|\n",
+    "lastKnownWriteTime": 1684160498,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1684160498159,
+    "read_only": false,
+    "read_only_alternatives": []
+}
