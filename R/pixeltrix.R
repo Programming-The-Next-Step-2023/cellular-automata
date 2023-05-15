@@ -266,4 +266,3 @@ draw_pixels <- function(m, colours = NULL) {
 
 #glider = click_pixels(15, 15)
 #save(glider, file = "glider.Rdata")
-
