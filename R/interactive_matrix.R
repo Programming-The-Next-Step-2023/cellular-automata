@@ -40,9 +40,9 @@
 #     #                      high = "navy", midpoint = .02) +
 #     # theme_void()
 # }
-
-MAT <-  matrix(c(100, 7, 0, 0, 49, 0, 0, 0, -49), nrow = 3, ncol = 3)
-vizMat(MAT)
+#
+# MAT <-  matrix(c(100, 7, 0, 0, 49, 0, 0, 0, -49), nrow = 3, ncol = 3)
+# vizMat(MAT)
 
 
 
