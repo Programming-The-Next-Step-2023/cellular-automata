@@ -2,20 +2,8 @@
 #
 # Shiny Life-Like Cells: Computations
 #
-# all the vitals for an Automaton
+# evolving a matrix
 
-
-
-# Source -----------------------------------------------------------------------
-
-source("./R/pixeltrix.R")
-
-# Load test_matrices
-test_matrices = as.list(dir(path = "./data/test_matrices"))
-for (i in 1:length(test_matrices)) {
-  file_path = paste0("./data/test_matrices/", test_matrices[i])
-  load(file_path)
-}
 
 
 # neighbours() -----------------------------------------------------------------
@@ -67,14 +55,6 @@ neighbours <- function(matrix, row_index, col_index) {
   return(living)
 }
 
-testthat::expect_equal(neighbours(border_north_east, 1, 1), 1)
-testthat::expect_equal(neighbours(border_north, 1, 5), 5)
-testthat::expect_equal(neighbours(border_north_west, 1, 2), 1)
-testthat::expect_equal(neighbours(border_west, 8, 1), 2)
-testthat::expect_equal(neighbours(border_east, 8, 8), 2)
-testthat::expect_equal(neighbours(border_south_west, 7, 8), 3)
-testthat::expect_equal(neighbours(border_south, 3, 2), 1)
-testthat::expect_equal(neighbours(border_south_east, 5, 1), 1)
 
 
 # extract_rules() --------------------------------------------------------------
@@ -111,6 +91,8 @@ evolve <- function(input_matrix, rule_string) {
   output_matrix = input_matrix
   output_matrix[output_matrix == 1] <- 0
 
+  rules = extract_rules(rule_string)
+
   border_reached = FALSE
   # Border cells alive? -> no change through evolution
   if (
@@ -123,8 +105,6 @@ evolve <- function(input_matrix, rule_string) {
     border_reached = TRUE
 
   } else {  # Otherwise apply rule set
-
-    rules = extract_rules(rule_string)
 
     # Which dead cells are born into life?
     list_dead = which(input_matrix == 0)
@@ -164,62 +144,3 @@ evolve <- function(input_matrix, rule_string) {
 
   return(list(output_matrix, border_reached))
 }
-
-
-
-# automaton() ------------------------------------------------------------------
-#
-
-automaton <- function(input_matrix, rules, max_iterations, speed) {
-
-  iteration = 0
-  current_matrix = input_matrix
-
-  # Living border cells in the INITIAL matrix?
-  border_reached = evolve(current_matrix, rules)[[2]]
-
-  while (border_reached == FALSE && iteration < max_iterations) {
-
-    next_matrix = evolve(current_matrix, rules)[[1]]
-
-    # Living border cells in the NEXT matrix?
-    border_reached = evolve(current_matrix, rules)[[2]]
-    if (border_reached == TRUE) {
-      break
-    } else {
-      iteration = iteration + 1
-      print(paste0("Time: ", iteration))
-      draw_pixels(next_matrix)
-      current_matrix = next_matrix
-      Sys.sleep(1 / speed)
-    }
-
-  }
-  # End while loop
-  if (border_reached == TRUE) {
-    print(paste0("Border was reached."))
-  }
-  if (iteration >= max_iterations) {
-    print(paste0("Maximum number of iterations reached."))
-  }
-  return()  # placeholder for list which will contain values for GUI
-}
-
-
-
-#draw_pixels(glider)
-#automaton(glider, "B3/S23", max_iterations = 100, speed = 15)
-
-#draw_pixels(toad)
-#automaton(toad, "B3/S23", max_iterations = 15, speed = 5)  # Life
-#automaton(toad, "B2/S", max_iterations = 50, speed = 5)  # Seeds
-#automaton(toad, "B2/S", max_iterations = 3, speed = 5)  # Seeds
-
-#draw_pixels(beehive)
-#automaton(beehive, "B3/S23", max_iterations = 7, speed = 5)
-
-
-#gustaws_game = click_pixels(30, 30)
-
-#draw_pixels(gustaws_game)
-#automaton(gustaws_game, "B3/S23", max_iterations = 100, speed = 10)
