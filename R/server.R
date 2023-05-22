@@ -9,6 +9,7 @@
 
 # Source -----------------------------------------------------------------------
 
+source("./R/pixeltrix.R")
 
 
 # Server -----------------------------------------------------------------------
@@ -23,6 +24,11 @@ server <- function(input, output) {
     paste("submitted:", automaton_arguments()[1],
           automaton_arguments()[2],
           automaton_arguments()[3])
+  })
+
+  # Plot ----
+  output$myPlot <- renderPlot({
+    draw_pixels(matrix(c(0, 1, 0, 0, 0), nrow = 80, ncol = 137))
   })
 
   # Reactive Output from Automaton Arguments ----

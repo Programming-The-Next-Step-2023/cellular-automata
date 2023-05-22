@@ -1,4 +1,4 @@
-# Stolen with eternal thankfulness and adapted from:
+# Adapted from:
 # https://github.com/matt-dray/pixeltrix
 # Date of retrieval: 2023-05-19
 

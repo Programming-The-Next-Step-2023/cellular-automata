@@ -53,7 +53,7 @@ vizMat <- function(input_matrix) {
 }
 
 
-vizMat(simple_glider)
+# vizMat(simple_glider)
 
 
 

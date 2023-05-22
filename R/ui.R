@@ -83,6 +83,9 @@ ui <- shiny::fluidPage(
     # Main panel for displaying outputs ----
     shiny::mainPanel(
 
+      # Plot ----
+      shiny::plotOutput("myPlot", height = 600, width = 1025),
+
       # Submitted Automaton Arguments ----
       shiny::textOutput("submitted_arguments"),
 

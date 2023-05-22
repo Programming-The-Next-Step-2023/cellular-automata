@@ -10,7 +10,7 @@
 
 source("./R/computations.R")
 source("./R/pixeltrix.R")
-source("./R/interactive_matrix.R")
+#source("./R/interactive_matrix.R")
 
 # Load test_matrices
 test_matrices = as.list(dir(path = "./data/test_matrices"))
@@ -58,16 +58,16 @@ automaton <- function(input_matrix, rules, speed, max_iterations) {
 
 
 
-draw_pixels(glider)
-automaton(glider, "B3/S23", speed = 1, max_iterations = 100)
-
-for (i in 1:10) {
-  print(i)
-  vizMat(glider)
-  Sys.sleep(1)
-  vizMat(evolve(glider, "B3/S23")[[1]])
-  Sys.sleep(1)
-}
+# draw_pixels(glider)
+# automaton(glider, "B3/S23", speed = 1, max_iterations = 100)
+#
+# for (i in 1:10) {
+#   print(i)
+#   vizMat(glider)
+#   Sys.sleep(1)
+#   vizMat(evolve(glider, "B3/S23")[[1]])
+#   Sys.sleep(1)
+# }
 
 #draw_pixels(toad)
 #automaton(toad, "B3/S23", max_iterations = 15, speed = 5)  # Life
