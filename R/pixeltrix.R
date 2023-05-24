@@ -1,6 +1,13 @@
-# Stolen with eternal thankfulness and adapted from:
+#
+#
+# Pixeltrix
+#
+# Adapted from:
 # https://github.com/matt-dray/pixeltrix
 # Date of retrieval: 2023-05-19
+#
+# Visualizes a matrixs or 0s and 1s as a plot.
+
 
 # helper functions ----
 # Plot 'pixels' given the dimensions of the input matrix
@@ -167,7 +174,7 @@ click_pixels <- function(
     n_rows   = 8L,
     n_cols   = 8L,
     n_states = 2L,
-    colours  = c("white", "green"),
+    colours  = c("white", "forestgreen"),  #grey25
     grid     = TRUE
 ) {
 
@@ -185,9 +192,8 @@ click_pixels <- function(
 }
 
 
-
 # draw_pixels() ----
-draw_pixels <- function(m, colours = NULL) {
+draw_pixels <- function(m, colours  = c("white", "forestgreen")) {
 
   # Retrieve n_states from attributes or matrix values
   if (!is.null(attr(m, "colours"))) {
@@ -203,7 +209,7 @@ draw_pixels <- function(m, colours = NULL) {
 
   # If matrix has no 'colours' attribute, create gradated grey palette
   if (is.null(colours) & is.null(attr(m, "colours"))) {
-    get_greys <- grDevices::colorRampPalette(c("white", "grey20"))
+    get_greys <- grDevices::colorRampPalette(c("white", "forestgreen"))
     colours   <- get_greys(n_states)  # gradated colours from white to dark grey
   }
 
