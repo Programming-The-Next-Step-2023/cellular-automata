@@ -2,7 +2,7 @@
 #
 # Shiny Life-Like Cells: UI
 #
-# sourced and used in app.R
+# Sourced and used in app.R
 
 
 
@@ -18,7 +18,7 @@ ui <- shiny::fluidPage(
 
   # TitlePanel ----
   shiny::titlePanel(
-    shiny::h1("Lively Cells", style = "color:black")
+    shiny::h1("Lively Cells 🔬", style = "color:black")
   ),
 
 
@@ -37,13 +37,18 @@ ui <- shiny::fluidPage(
       # Header ---
       shiny::h4("How to play"),
 
-      shiny::p("Select a Rule Set",
-        "(see ",
-        shiny::a("Wikipedia",
+      # Use Mouse ---
+      shiny::p("Click into the grid on the right ",
+               "to bring some cells to life.",
+               "Clicking on a living cell kills it. ☺️"),
+
+      shiny::br(),
+      shiny::p("Next, select ",
+        shiny::a("Rule Set",
           target = "_blank",  # opens in new tab
           href = "https://en.wikipedia.org/wiki/Life-like_cellular_automaton#A_selection_of_Life-like_rules"
           ),
-        "):"),
+        "& Evolution Speed:"),
 
       # Input: Selector for rules ----
       shiny::selectInput(
@@ -55,27 +60,35 @@ ui <- shiny::fluidPage(
                     "Replicator - B1357/S1357")
       ),
 
-      # Use Mouse ---
-      shiny::p("Then,",
-               shiny::br(),
-               "click into the grid on the right ",
-               "to bring some cells to life.",
-               "Clicking on a living cell kills it."),
+      # Speed ---
+      shiny::selectInput(
+        inputId = "evolution_speed",
+        label = "Evolution Speed (Generations per Second)",
+        choices = c("0.7",
+                    "1.0",
+                    "1.3")
+      ),
+
+      # Controls ----
+      shiny::h4("Controls"),
+      shiny::actionButton("start_button", "Wake Up ☀️"),
+      shiny::actionButton("stop_button", "Sleep 🌒"),
+      shiny::actionButton("kill_button", "⚰️"),
       shiny::br(),
 
-      # Controls ---
-      shiny::h4("Controls"),
-      shiny::actionButton("start_button", "Start"),
-      shiny::actionButton("stop_button", "Stop"),
+      # Load Pattern ---
       shiny::br(),
-      shiny::br(),
-      shiny::numericInput("evolution_speed", "Evolution Speed (Generations per Second)",
-                   value = 5, min = 0, max = 10000),
-      shiny::numericInput("max_generations", "Maximum Number of Generations",
-                   value = 250, min = 1, max = 1000000),
-      shiny::br(),
-      shiny::actionButton("gen0_button", "Reinstate Generation 0"),
-      shiny::actionButton("kill_button", "Kill All Cells"),
+      shiny::selectInput(
+        inputId = "pattern",
+        label = "Preconfigured Patterns:",
+        choices = c("Oscillators",
+                    "Space Ships",
+                    "Glider Gun")
+      ),
+      shiny::actionButton("load_button", "Load selected Pattern"),
+
+      # shiny::br(),
+      # shiny::actionButton("gen0_button", "Reinstate Generation 0"),
 
     width = 3  # Relative to mainPanel
     ),
@@ -84,15 +97,20 @@ ui <- shiny::fluidPage(
     shiny::mainPanel(
 
       # Plot ----
-      shiny::plotOutput("myPlot", height = 600, width = 1025),
+      shiny::plotOutput("shown_plot", height = 600, width = 1025),
 
-      # Submitted Automaton Arguments ----
-      shiny::textOutput("submitted_arguments"),
+      # User Info ----
+      shiny::textOutput("sleepy_lively"),
+      shiny::textOutput("current_generation"),
+      shiny::textOutput("current_population"),
 
-      # Reactive Automaton Arguments ----
-      shiny::textOutput("selected_rules"),
-      shiny::textOutput("evolution_speed"),
-      shiny::textOutput("max_generations")
+      # # Submitted Automaton Arguments ----
+      # shiny::textOutput("submitted_arguments"),
+      #
+      # # Reactive Automaton Arguments ----
+      # shiny::textOutput("selected_rules"),
+      # shiny::textOutput("evolution_speed"),
+      # shiny::textOutput("max_generations")
 
     )
 

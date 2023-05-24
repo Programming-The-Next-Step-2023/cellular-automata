@@ -10,7 +10,7 @@
 
 source("./R/computations.R")
 source("./R/pixeltrix.R")
-#source("./R/interactive_matrix.R")
+
 
 # Load test_matrices
 test_matrices = as.list(dir(path = "./data/test_matrices"))
@@ -48,37 +48,32 @@ automaton <- function(input_matrix, rules, speed, max_iterations) {
   }
   # End while loop
   if (border_reached == TRUE) {
-    print(paste0("Border was reached."))
+    # print(paste0("Border was reached."))
   }
   if (iteration >= max_iterations) {
-    print(paste0("Maximum number of iterations reached."))
+    # print(paste0("Maximum number of iterations reached."))
   }
   return()  # placeholder for list which will contain values for GUI
 }
 
 
 
+# big_glider = click_pixels(60, 103)
+# draw_pixels(big_glider)
+# automaton(big_glider, "B3/S23", speed = 1, max_iterations = 100)
+# setwd(paste0(getwd(), "/data/test_matrices"))  # Point to folder with data
+# save(big_glider, file = "big_glider.Rdata")
+
+
 # draw_pixels(glider)
-# automaton(glider, "B3/S23", speed = 1, max_iterations = 100)
 #
-# for (i in 1:10) {
-#   print(i)
-#   vizMat(glider)
-#   Sys.sleep(1)
-#   vizMat(evolve(glider, "B3/S23")[[1]])
-#   Sys.sleep(1)
-# }
-
-#draw_pixels(toad)
-#automaton(toad, "B3/S23", max_iterations = 15, speed = 5)  # Life
-#automaton(toad, "B2/S", max_iterations = 50, speed = 5)  # Seeds
-#automaton(toad, "B2/S", max_iterations = 3, speed = 5)  # Seeds
-
-#draw_pixels(beehive)
-#automaton(beehive, "B3/S23", max_iterations = 7, speed = 5)
+# draw_pixels(toad)
+# automaton(toad, "B3/S23", max_iterations = 15, speed = 5)  # Life
+# automaton(toad, "B2/S", max_iterations = 50, speed = 5)  # Seeds
+# automaton(toad, "B2/S", max_iterations = 3, speed = 5)  # Seeds
+#
+# draw_pixels(beehive)
+# automaton(beehive, "B3/S23", max_iterations = 7, speed = 5)
 
 
-#gustaws_game = click_pixels(30, 30)
 
-#draw_pixels(gustaws_game)
-#automaton(gustaws_game, "B3/S23", max_iterations = 100, speed = 10)
