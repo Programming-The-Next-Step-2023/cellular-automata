@@ -13,12 +13,24 @@
 # UI ---------------------------------------------------------------------------
 
 ui <- shiny::fluidPage(
-
   title = "Lively Cells / Vincent Ott",
 
   # TitlePanel ----
   shiny::titlePanel(
-    shiny::h1("Lively Cells 🔬", style = "color:black")
+    shiny::h1("Lively Cells 🔬"),
+
+    # credits ---
+    shiny::p("built by Vincent Ott with the help of ",
+      shiny::a("work",
+      target = "_blank",  # opens in new tab
+      href = "https://www.rostrum.blog/2022/09/24/pixeltrix/"
+    ),
+      "by",
+      shiny::a("Matt Dray",
+        target = "_blank",  # opens in new tab
+        href = "https://www.matt-dray.com/"
+      ),
+    )
   ),
 
 
@@ -32,7 +44,7 @@ ui <- shiny::fluidPage(
       shiny::h4("What is this?"),
       shiny::p("This is an intro text to cellular automata.
         Lorem ipsum dolor sit amet oder so. Hahahahahahahahaha!"),
-      shiny::hr(),
+      shiny::br(),
 
       # Header ---
       shiny::h4("How to play"),
@@ -40,7 +52,7 @@ ui <- shiny::fluidPage(
       # Use Mouse ---
       shiny::p("Click into the grid on the right ",
                "to bring some cells to life.",
-               "Clicking on a living cell kills it. ☺️"),
+               "Clicking on a living cell kills it.️"),
 
       shiny::br(),
       shiny::p("Next, select ",
@@ -48,7 +60,8 @@ ui <- shiny::fluidPage(
           target = "_blank",  # opens in new tab
           href = "https://en.wikipedia.org/wiki/Life-like_cellular_automaton#A_selection_of_Life-like_rules"
           ),
-        "& Evolution Speed:"),
+        "& Evolution Speed:"
+      ),
 
       # Input: Selector for rules ----
       shiny::selectInput(
@@ -64,16 +77,16 @@ ui <- shiny::fluidPage(
       shiny::selectInput(
         inputId = "evolution_speed",
         label = "Evolution Speed (Generations per Second)",
-        choices = c("0.7",
-                    "1.0",
-                    "1.3")
+        choices = c("1300",
+                    "1000",
+                    "750")
       ),
 
       # Controls ----
       shiny::h4("Controls"),
       shiny::actionButton("start_button", "Wake Up ☀️"),
       shiny::actionButton("stop_button", "Sleep 🌒"),
-      shiny::actionButton("kill_button", "⚰️"),
+      shiny::actionButton("kill_button", "Kill ⚰️"),
       shiny::br(),
 
       # Load Pattern ---
@@ -83,12 +96,10 @@ ui <- shiny::fluidPage(
         label = "Preconfigured Patterns:",
         choices = c("Oscillators",
                     "Space Ships",
-                    "Glider Gun")
+                    "Glider Gun",
+                    "Random Noise")
       ),
-      shiny::actionButton("load_button", "Load selected Pattern"),
-
-      # shiny::br(),
-      # shiny::actionButton("gen0_button", "Reinstate Generation 0"),
+      shiny::actionButton("load_button", "Send pattern to petri dish ↗️"),
 
     width = 3  # Relative to mainPanel
     ),
@@ -97,12 +108,16 @@ ui <- shiny::fluidPage(
     shiny::mainPanel(
 
       # Plot ----
-      shiny::plotOutput("shown_plot", height = 600, width = 1025),
+      shiny::plotOutput("shown_plot", height = 600, width = 1025,
+                        click = "plot_click"
+      ),
 
       # User Info ----
-      shiny::textOutput("sleepy_lively"),
+      shiny::textOutput("user_info"),
       shiny::textOutput("current_generation"),
       shiny::textOutput("current_population"),
+
+      shiny::verbatimTextOutput("click_info"),
 
       # # Submitted Automaton Arguments ----
       # shiny::textOutput("submitted_arguments"),

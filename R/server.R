@@ -10,7 +10,7 @@
 
 source("./R/computations.R")
 source("./R/pixeltrix.R")
-load("./data/test_matrices/big_glider.Rdata")
+
 
 
 # Server -----------------------------------------------------------------------
@@ -19,57 +19,63 @@ server <- function(input, output, session) {
 
   # Initial Settings ----
   automaton_running <- reactiveVal(FALSE)
+  border_reached <- reactiveVal(FALSE)
+
   generation_counter <- reactiveVal(0)
 
-  petri_dish <- reactiveVal()  # There is only one reactive matrix
-                               # so I choose this name
-  petri_dish(big_glider)
+  petri_dish <- reactiveVal(matrix(0, nrow = 50, ncol = 86))
+
+  rules = "B3/S23"
 
   # Automaton ----
-  rules = "B3/S23"
-  speed = 750  # 1300, 1000, 750
   shiny::observe({
 
-    shiny::invalidateLater(speed, session)
+    shiny::invalidateLater(800, session)
     shiny::isolate({
-      if(automaton_running() == TRUE) {
 
+      if(automaton_running() == TRUE) {
         current_dish <- petri_dish()
         next_dish = evolve(current_dish, rules)[[1]]
-        generation_counter(generation_counter() + 1)
+        border_reached(evolve(current_dish, rules)[[2]])
+        if(border_reached() == FALSE) {
+          generation_counter(generation_counter() + 1)
+          petri_dish(next_dish)
+        }
+      }  # End automaton
+
+      else {
+        NULL
+      } # End point and click
+
+    })
+  })
+
+  # Click Observe ----
+  shiny::observeEvent(
+    input$plot_click,
+    {
+      if (automaton_running() == FALSE) {
+        next_dish <- petri_dish()
+        indices = click_to_cell(next_dish, input$plot_click$x, input$plot_click$y)
+        row_index = indices[[1]]
+        col_index = indices[[2]]
+        if (next_dish[row_index, col_index] == 0) {
+            next_dish[row_index, col_index] <- 1
+        } else {
+            next_dish[row_index, col_index] <- 0
+        }
         petri_dish(next_dish)
-
-
-        # # Living border cells in CURRENT dish?
-        # border_reached = evolve(current_dish, rules)[[2]]
-        #
-        # while (border_reached == FALSE) {
-        #
-        #   next_dish = evolve(current_dish, rules)[[1]]
-        #
-        #   # Living border cells in the NEXT dish?
-        #   border_reached = evolve(current_dish, rules)[[2]]
-        #   if (border_reached == TRUE) {
-        #     break
-        #   } else {
-        #     petri_dish(next_dish)  # Update
-        #     generation_counter(generation_counter() + 1)
-        #   }
-        # }
-
-
-
-      } # End automaton
-    }) # End automaton
-  })  # End automaton
-
+      }
+    }
+  )
 
   # Button Observers ----
   shiny::observeEvent(
     input$start_button,
-    {  # Code block that executes when start button is pressed
-    automaton_running(TRUE)
-  })
+    {
+      automaton_running(TRUE)
+    }
+  )
 
   shiny::observeEvent(
     input$stop_button,
@@ -81,6 +87,7 @@ server <- function(input, output, session) {
   shiny::observeEvent(
     input$kill_button,
     {
+      border_reached(FALSE)
       automaton_running(FALSE)
       generation_counter(0)
       killed_dish <- petri_dish()
@@ -92,14 +99,23 @@ server <- function(input, output, session) {
 
   # Output ----
   output$shown_plot <- renderPlot({
-    draw_pixels(petri_dish())  # * 1.71 col
+    draw_pixels(petri_dish())
   })
 
-  output$sleepy_lively <- shiny::renderText({
-    if(automaton_running() == FALSE) {
-      paste0("😴😴😴 the cells are sleeping 😴😴😴")
+  output$user_info <- shiny::renderText({
+    if(border_reached() == TRUE) {
+      paste0("🚨 There are cells at the border.")
     } else {
-      paste0("🔎 Watch, those lively cells!")
+      if(automaton_running() == FALSE) {
+        if (sum(petri_dish() == 0)) {
+          paste0("💡 There are no living cells. Use your mouse to bring some to life!")
+        } else {
+          paste0("😴😴😴 the cells are sleeping 😴😴😴")
+        }
+      } else {
+        paste0("🔎 Watch, those lively cells! They are evolving!")
+      }
+
     }
   })
 
@@ -111,18 +127,9 @@ server <- function(input, output, session) {
     paste0("Population: ", sum(petri_dish()))
   })
 
-
-  # # Start button: Submit Automaton Settings ----
-  # automaton_arguments <- eventReactive(input$start_button, {
-  #   c(input$rules, input$evolution_speed, input$max_generations)
-  # })
   # output$submitted_arguments <- shiny::renderText({
-  #   paste("submitted:", automaton_arguments()[1],
-  #         automaton_arguments()[2],
-  #         automaton_arguments()[3])
+  #   paste("current rules: ", rule_string(), "current speed: " , speed())
   # })
-
-
 
   # # Reactive Output from Automaton Arguments ----
   # output$selected_rules <- shiny::renderText({
@@ -134,5 +141,4 @@ server <- function(input, output, session) {
   # output$max_generations <- shiny::renderText({
   #   paste0("reactive max_gen: ", input$max_generations)
   # })
-
 }

@@ -84,11 +84,12 @@ extract_rules <- function(input_string) {
 
 # evolve() ---------------------------------------------------------------------
 # Takes a matrix and rule set as input
-# returns list with matrix after evolution AND whether border was reached
+# matrix after evolution
 
 evolve <- function(input_matrix, rule_string) {
 
   output_matrix = input_matrix
+  number_of_rows = nrow(input_matrix)
   output_matrix[output_matrix == 1] <- 0
 
   rules = extract_rules(rule_string)
@@ -100,7 +101,7 @@ evolve <- function(input_matrix, rule_string) {
     sum(input_matrix[nrow(input_matrix), ]) > 0 ||
     sum(input_matrix[, 1]) > 0 ||
     sum(input_matrix[, ncol(input_matrix)]) > 0
-    ) {
+  ) {
     output_matrix = input_matrix
     border_reached = TRUE
 
@@ -111,8 +112,10 @@ evolve <- function(input_matrix, rule_string) {
     for (i in list_dead) {
 
       # Indices of cell
-      number_of_rows = nrow(input_matrix)
       row_index = i %% number_of_rows
+      if (row_index == 0) {
+        row_index = number_of_rows
+      }
       column_index = ceiling(i / number_of_rows)
 
       living_neighbours = neighbours(input_matrix, row_index, column_index)
@@ -127,8 +130,10 @@ evolve <- function(input_matrix, rule_string) {
     for (i in list_living) {
 
       # Indices of cell
-      number_of_rows = nrow(input_matrix)
       row_index = i %% number_of_rows
+      if (row_index == 0) {
+        row_index = number_of_rows
+      }
       column_index = ceiling(i / number_of_rows)
 
       living_neighbours = neighbours(input_matrix, row_index, column_index)
@@ -144,3 +149,5 @@ evolve <- function(input_matrix, rule_string) {
 
   return(list(output_matrix, border_reached))
 }
+
+

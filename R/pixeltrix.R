@@ -232,6 +232,37 @@ draw_pixels <- function(m, colours  = c("white", "forestgreen")) {
 }
 
 
+
+# For use in server ------------------------------------------------------------
+
+click_to_cell <- function(input_matrix, input_x, input_y) {
+
+  # Pixel centres, x axis
+  x_n    <- ncol(input_matrix)    # number of pixels in the x dimension
+  x_unit <- 1 / (x_n - 1)         # x width of pixels
+  x_mids <- seq(0, 1, x_unit)     # full set of pixel centres on x axes
+
+  # Pixel centres, y axis
+  y_n    <- nrow(input_matrix)
+  y_unit <- 1 / (y_n - 1)
+  y_mids <- seq(0, 1, y_unit)
+
+  # Calculate distances xy from clicked point to pixel centres
+  x_diffs <- abs(input_x - x_mids)
+  y_diffs <- rev(abs(input_y - y_mids))
+
+  output_coords <- list(
+    x <- which.min(y_diffs),
+    y <- which.min(x_diffs)
+  )
+
+  return(output_coords)
+}
+
+
+
+
+
 # Create some test matrices for computations -----------------------------------
 # they are used in computations.R
 

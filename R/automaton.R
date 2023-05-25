@@ -21,7 +21,28 @@ for (i in 1:length(test_matrices)) {
 
 # automaton() ------------------------------------------------------------------
 
-automaton <- function(input_matrix, rules, speed, max_iterations) {
+automaton <- function(input_matrix, rules, speed) {
+
+  iteration = 0
+  current_matrix = input_matrix
+
+  while(iteration < 100) {
+    iteration = iteration + 1
+    print(paste0("Time: ", iteration))
+    next_matrix = evolve(current_matrix, rules)
+    draw_pixels(next_matrix)
+    current_matrix = next_matrix
+    Sys.sleep(1 / speed)
+  }
+
+}
+
+
+
+
+# automaton_old() --------------------------------------------------------------
+
+automaton_old <- function(input_matrix, rules, speed, max_iterations) {
 
   iteration = 0
   current_matrix = input_matrix
@@ -48,13 +69,27 @@ automaton <- function(input_matrix, rules, speed, max_iterations) {
   }
   # End while loop
   if (border_reached == TRUE) {
-    # print(paste0("Border was reached."))
+    print(paste0("Border was reached."))
   }
   if (iteration >= max_iterations) {
     # print(paste0("Maximum number of iterations reached."))
   }
   return()  # placeholder for list which will contain values for GUI
 }
+
+
+# draw_pixels(verti_line_gen0)
+# automaton_old(verti_line_gen0, "B3/S23", 1, 1)
+#
+# draw_pixels(hori_line_gen0)
+# automaton_old(hori_line_gen0, "B3/S23", 1, 1)
+
+# draw_pixels(glider)
+# draw_pixels(evolve(glider, "B3/S012345678"))
+# automaton(glider, "B2/", 1)
+
+# border_test = click_pixels(5, 5)
+# automaton(border_test, "B3/S23", 0.5)
 
 
 
@@ -65,8 +100,7 @@ automaton <- function(input_matrix, rules, speed, max_iterations) {
 # save(big_glider, file = "big_glider.Rdata")
 
 
-# draw_pixels(glider)
-#
+
 # draw_pixels(toad)
 # automaton(toad, "B3/S23", max_iterations = 15, speed = 5)  # Life
 # automaton(toad, "B2/S", max_iterations = 50, speed = 5)  # Seeds
@@ -76,4 +110,8 @@ automaton <- function(input_matrix, rules, speed, max_iterations) {
 # automaton(beehive, "B3/S23", max_iterations = 7, speed = 5)
 
 
+# misc_cells = click_pixels(50, 86)
+# save(misc_cells, file = "misc_cells.Rdata")
 
+# glider50 = click_pixels(50, 86)
+# save(glider50, file = "glider50.Rdata")
