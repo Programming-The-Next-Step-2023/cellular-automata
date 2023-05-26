@@ -2,14 +2,7 @@
 #
 # Shiny Life-Like Cells: Server
 #
-# Sourced and used in app.R
-
-
-
-# Source -----------------------------------------------------------------------
-
-source("./R/computations.R")
-source("./R/pixeltrix.R")
+#
 
 
 
@@ -18,20 +11,18 @@ source("./R/pixeltrix.R")
 server <- function(input, output, session) {
 
   # Initial Settings ----
+  petri_dish <- reactiveVal(matrix(0, nrow = 50, ncol = 86))
   automaton_running <- reactiveVal(FALSE)
   border_reached <- reactiveVal(FALSE)  # only backend
   still_life <- reactiveVal(FALSE)  # only frontend
-
   generation_counter <- reactiveVal(0)
-
-  petri_dish <- reactiveVal(matrix(0, nrow = 50, ncol = 86))
 
   rules = "B3/S23"
 
   # Automaton ----
-  shiny::observe({
-    shiny::invalidateLater(800, session)
-    shiny::isolate({
+  observe({
+    invalidateLater(800, session)
+    isolate({
 
       if(automaton_running() == TRUE) {
 
@@ -41,18 +32,19 @@ server <- function(input, output, session) {
 
         if(border_reached() == FALSE) {
 
-          if (all.equal(current_dish, next_dish) == TRUE) {
+          if (isTRUE(all.equal(current_dish, next_dish))) {
             still_life(TRUE)
           }
 
-          generation_counter(generation_counter() + 1)
+          if (sum(current_dish) > 0) {
+            generation_counter(generation_counter() + 1)
+          }
+
           petri_dish(next_dish)
 
         } else {  # Border IS reached
           automaton_running(FALSE)
         }
-
-
 
       } else {  # Automaton NOT running
         NULL
@@ -64,7 +56,7 @@ server <- function(input, output, session) {
 
 
   # Click Observe ----
-  shiny::observeEvent(
+  observeEvent(
     input$plot_click,
     {
       if (automaton_running() == FALSE) {
@@ -83,7 +75,7 @@ server <- function(input, output, session) {
   )
 
   # Button Observers ----
-  shiny::observeEvent(
+  observeEvent(
     input$start_button,
     {
       if (sum(petri_dish()) != 0) {  # only starts if there are living cells
@@ -92,7 +84,7 @@ server <- function(input, output, session) {
     }
   )
 
-  shiny::observeEvent(
+  observeEvent(
     input$stop_button,
     {
       automaton_running(FALSE)
@@ -100,7 +92,7 @@ server <- function(input, output, session) {
     }
   )
 
-  shiny::observeEvent(
+  observeEvent(
     input$kill_button,
     {
       automaton_running(FALSE)
@@ -135,7 +127,7 @@ server <- function(input, output, session) {
       ) {
         "🚨 There are cells at the border which this app can´t simulate. Kill those border cells by mouse or kill all cells ⚰️."
       } else if (sum(petri_dish()) == 0) {
-        "💡 There are no living cells. Use your mouse to click some to life!"
+        "💡 There are no live cells. Use your mouse to click some to life!"
       } else {
         "😴 the cells are sleeping"
       }
@@ -144,7 +136,7 @@ server <- function(input, output, session) {
 
       if (sum(petri_dish()) == 0) {
         "🪦 All cells died out throughout the evolution. Start over with ⚰️."
-      } else if (still_life() == TRUE) {
+      } else if (still_life()) {
         "🧘 This is a still life. The evolution continues but the cells found inner peace."
       } else {
         "🥳 Watch, the cells are lively and evolving!"
@@ -154,13 +146,11 @@ server <- function(input, output, session) {
 
   })  # End user info
 
-
-  output$coder_info <- shiny::renderPrint({
-    cat("coder_info | ", "running: ", automaton_running(),
-        " border: ", border_reached(),
-        " still life: ", still_life())
-  })
-
+  # output$coder_info <- shiny::renderPrint({
+  #   cat("coder_info | ", "running: ", automaton_running(),
+  #       " border: ", border_reached(),
+  #       " still life: ", still_life())
+  # })
 
   output$current_generation <- shiny::renderText({
     paste0("Generation: ", generation_counter())

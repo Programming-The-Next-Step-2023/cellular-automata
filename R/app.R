@@ -6,28 +6,22 @@
 
 
 
-# Source -----------------------------------------------------------------------
-
-source("./R/ui.R")
-source("./R/server.R")
-
 # Create Shiny App -------------------------------------------------------------
 
 #' Starts the App to Play With
 #'
-#' Run it to start the app and play around with the
-#'    cellular automata.
+#' Run it to start the app and play the Game
 #'
 #' @param none There are no arguments!
 #'
 #' @return The app just starts. So, nothing is returned, I guess?
 #'
-#' @details For more details on cellular automata see the \href{https://en.wikipedia.org/wiki/Life-like_cellular_automaton}{Wikipedia article}.
+#' @details For more details on the Game see its \href{https://en.wikipedia.org/wiki/Conway's_Game_of_Life}{Wikipedia article}.
 #'
 #' @examples
 #' play()
 #'
 #' @export
 play <- function() {
-  shiny::shinyApp(ui = ui, server = server)
+  shinyApp(ui = ui, server = server)
 }

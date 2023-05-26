@@ -3,7 +3,7 @@
 \docType{package}
 \name{livelycells}
 \alias{livelycells}
-\title{An R Shiny App for Conway´s Game of Life and other Life-Like Cellular Automata.}
+\title{An R Shiny App for Conway´s Game of Life}
 \description{
 The package has one function.
 }

@@ -13,11 +13,10 @@ play()
 The app just starts. So, nothing is returned, I guess?
 }
 \description{
-Run it to start the app and play around with the
-   cellular automata.
+Run it to start the app and play the Game
 }
 \details{
-For more details on cellular automata see the \href{https://en.wikipedia.org/wiki/Life-like_cellular_automaton}{Wikipedia article}.
+For more details on the Game see its \href{https://en.wikipedia.org/wiki/Conway's_Game_of_Life}{Wikipedia article}.
 }
 \examples{
 play()

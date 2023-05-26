@@ -2,7 +2,32 @@
 #
 # Shiny Life-Like Cells: Computations
 #
-# evolving a matrix
+# extract_rules() and count living neighbours() to evolve() a matrix
+
+
+
+# extract_rules() --------------------------------------------------------------
+# Takes a string of rules in Golly/RLE format as input
+# and returns a list with two vectors.
+
+# First vector contains birth_rules
+# Second contains the survival_rules
+
+extract_rules <- function(input_string) {
+
+  separated_rules = unlist(strsplit(input_string, "/"))
+
+  birth_rules = separated_rules[1]
+  birth_rules = unlist(strsplit(birth_rules, ""))
+  birth_rules = as.integer(birth_rules[-1])
+
+  survival_rules = separated_rules[2]
+  survival_rules = unlist(strsplit(survival_rules, ""))
+  survival_rules = as.integer(survival_rules[-1])
+
+  return(list(birth_rules, survival_rules))
+
+}
 
 
 
@@ -53,31 +78,6 @@ neighbours <- function(matrix, row_index, col_index) {
   )
 
   return(living)
-}
-
-
-
-# extract_rules() --------------------------------------------------------------
-# Takes a string of rules in Golly/RLE format as input
-# and returns a list with two vectors.
-
-# First vector contains birth_rules
-# Second contains the survival_rules
-
-extract_rules <- function(input_string) {
-
-  separated_rules = unlist(strsplit(input_string, "/"))
-
-  birth_rules = separated_rules[1]
-  birth_rules = unlist(strsplit(birth_rules, ""))
-  birth_rules = as.integer(birth_rules[-1])
-
-  survival_rules = separated_rules[2]
-  survival_rules = unlist(strsplit(survival_rules, ""))
-  survival_rules = as.integer(survival_rules[-1])
-
-  return(list(birth_rules, survival_rules))
-
 }
 
 
@@ -149,5 +149,3 @@ evolve <- function(input_matrix, rule_string) {
 
   return(list(output_matrix, border_reached))
 }
-
-

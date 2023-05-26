@@ -6,7 +6,10 @@
 # https://github.com/matt-dray/pixeltrix
 # Date of retrieval: 2023-05-19
 #
-# Visualizes a matrixs or 0s and 1s as a plot.
+# The Shiny App only uses the click_to_cells().
+# The other functions helped develop the package
+# (e.g., unit_tests or loading preset patterns in app).
+
 
 
 # helper functions ----
@@ -258,48 +261,3 @@ click_to_cell <- function(input_matrix, input_x, input_y) {
 
   return(output_coords)
 }
-
-
-
-
-
-# Create some test matrices for computations -----------------------------------
-# they are used in computations.R
-
-#setwd(paste0(getwd(), "/data/test_matrices"))  # Point to folder with data
-
-#border_north_east = click_pixels(7, 7)
-#save(border_north_east, file = "border_north_east.Rdata")
-
-#border_north = click_pixels(6, 6)
-#save(border_north, file = "border_north.Rdata")
-
-#border_north_west = click_pixels(2, 2)
-#save(border_north_west, file = "border_north_west.Rdata")
-
-#border_west = click_pixels(13, 22)
-#save(border_west, file = "border_west.Rdata")
-
-#border_east = click_pixels(19, 8)
-#save(border_east, file = "border_east.Rdata")
-
-#border_south_east = click_pixels(5, 5)
-#save(border_south_east, file = "border_south_east.Rdata")
-
-#border_south = click_pixels(3, 3)
-#save(border_south, file = "border_south.Rdata")
-
-#border_south_west = click_pixels(7, 8)
-#save(border_south_west, file = "border_south_west.Rdata")
-
-#beehive = click_pixels(15, 15)
-#save(beehive, file = "beehive.Rdata")
-
-#toad = click_pixels(15, 15)
-#save(toad, file = "toad.Rdata")
-
-#simple_glider = click_pixels(6, 6)
-#save(simple_glider, file = "simple_glider.Rdata")
-
-#glider = click_pixels(15, 15)
-#save(glider, file = "glider.Rdata")

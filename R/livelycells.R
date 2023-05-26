@@ -1,4 +1,4 @@
-#' An R Shiny App for Conway´s Game of Life and other Life-Like Cellular Automata.
+#' An R Shiny App for Conway´s Game of Life
 #'
 #' The package has one function.
 #'

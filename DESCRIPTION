@@ -1,12 +1,12 @@
 Package: livelycells
 Type: Package
-Title: An R Shiny App for Conway´s Game of Life and other Life-Like Cellular Automata
+Title: An R Shiny App for Conway´s Game of Life
 Version: 0.1.0
 Author: Vincent L. Ott
 Maintainer: Vincent L. Ott <vincent.ott@student.uva.nl>
 Description: Bring cells to life and watch the population evolve over time!
-    For more information about cellular automata see:
-    https://en.wikipedia.org/wiki/Life-like_cellular_automaton
+    For more information about the Game see:
+    https://en.wikipedia.org/wiki/Conway's_Game_of_Life
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
