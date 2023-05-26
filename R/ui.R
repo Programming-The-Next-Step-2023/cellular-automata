@@ -86,7 +86,7 @@ ui <- shiny::fluidPage(
       shiny::h4("Controls"),
       shiny::actionButton("start_button", "Wake Up ☀️"),
       shiny::actionButton("stop_button", "Sleep 🌒"),
-      shiny::actionButton("kill_button", "Kill ⚰️"),
+      shiny::actionButton("kill_button", "Kill all ⚰️"),
       shiny::br(),
 
       # Load Pattern ---
@@ -114,6 +114,7 @@ ui <- shiny::fluidPage(
 
       # User Info ----
       shiny::textOutput("user_info"),
+      shiny::textOutput("coder_info"),
       shiny::textOutput("current_generation"),
       shiny::textOutput("current_population"),
 
