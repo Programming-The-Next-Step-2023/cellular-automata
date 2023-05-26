@@ -125,7 +125,7 @@ server <- function(input, output, session) {
         sum(current_dish[, 1]) > 0 ||
         sum(current_dish[, ncol(current_dish)]) > 0
       ) {
-        "🚨 There are cells at the border which this app can´t simulate. Kill those border cells by mouse or kill all cells ⚰️."
+        "🚨 There are cells at the border which this app can´t simulate. Kill these border cells by mouse or kill all cells ⚰️."
       } else if (sum(petri_dish()) == 0) {
         "💡 There are no live cells. Use your mouse to click some to life!"
       } else {

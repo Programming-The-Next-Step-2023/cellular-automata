@@ -31,11 +31,7 @@ ui <- fluidPage(
           target = "_blank",  # opens in new tab
           href = "https://en.wikipedia.org/wiki/Conway's_Game_of_Life"
         ),
-        "built by ",
-        a("Vincent Ott",
-          target = "_blank",  # opens in new tab
-          href = "https://github.com/vincentott"
-        ),
+        "built by Vincent Ott",
         "with the help of ",
         a("work",
           target = "_blank",
@@ -53,46 +49,20 @@ ui <- fluidPage(
         either be dead or alive. The cells evolve over time based on two rules:\n",
         "A live cell with two or three live neighbours survives - otherwise it dies.
         A dead cell with three live neighbours becomes a live cell.",
-        "These rules create interesting and often unpredictable behaviors."
+        "This leads to interesting and often unpredictable behaviors."
       ),
       br(),
 
       # Header ---
       h4("How to play"),
 
-      # Use Mouse ---
-      p("Click into the grid on the right ",
-        "to bring some cells to life.",
-        "Clicking on a living cell kills it.️"
+      p("Click into the grid to bring some cells to life. ",
+        "Clicking on a live cell kills it. ",
+        "Try to stay in the middle of the grid as the simulation can´t
+        evolve once the border has been reached.",
+        "Wake up the cells to watch them evolve."
       ),
-
       br(),
-      p("Next, select ",
-        a("Rule Set",
-          target = "_blank",  # opens in new tab
-          href = "https://en.wikipedia.org/wiki/Life-like_cellular_automaton#A_selection_of_Life-like_rules"
-          ),
-        "& Evolution Speed:"
-      ),
-
-      # # Input: Selector for rules ----
-      # selectInput(
-      #   inputId = "rules",
-      #   label = "Rule Set",
-      #   choices = c("Life - B3/S23",
-      #               "Life without Death - B3/S012345678",
-      #               "Seeds - B2/S",
-      #               "Replicator - B1357/S1357")
-      # ),
-
-      # # Speed ---
-      # selectInput(
-      #   inputId = "evolution_speed",
-      #   label = "Evolution Speed (Generations per Second)",
-      #   choices = c("1300",
-      #               "1000",
-      #               "750")
-      # ),
 
       # Controls ----
       h4("Controls"),
@@ -102,22 +72,14 @@ ui <- fluidPage(
       br(),
 
       # Load Pattern ---
-      br(),
-      # selectInput(
-      #   inputId = "pattern",
-      #   label = "Preconfigured Patterns:",
-      #   choices = c("Oscillators",
-      #               "Space Ships",
-      #               "Glider Gun",
-      #               "Random Noise")
-      # ),
-      h5("Load in Pre-Configured Patterns"),
-      actionButton("osci_button", "️Oscillators"),
-      actionButton("ships_button", "️Space Ships"),
-      br(),
-      br(),
-      actionButton("gun_button", "Glider Gun"),
-      actionButton("noise_button", "Random"),
+      h5("Load a pattern:"),
+      actionButton("butterfly_button", "🦋"),
+      actionButton("galaxy_button", "🌀"),
+      actionButton("gun_button", "🔫"),
+      actionButton("diehard_button", "⌛"),
+      actionButton("weekender_button", "🚀"),
+      actionButton("random_button", "🎲"),  # 15 each row; 30 each col;
+
 
     width = 3  # Relative to mainPanel
     ),  # End sidePanel
