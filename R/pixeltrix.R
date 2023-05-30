@@ -191,7 +191,7 @@ click_pixels <- function(
     n_rows   = 8L,
     n_cols   = 8L,
     n_states = 2L,
-    colours  = c("white", "forestgreen"),  #grey25
+    colours  = c("white", "forestgreen"),
     grid     = TRUE
 ) {
 
