@@ -10,5 +10,4 @@ Then, the cells evolve over time and show all sorts of interesting behavior.
 There are also preset patterns.
 
 This package was build with the help of code from the
-[pixeltrix package](<http://github.com/matt-dray/pixeltrix>) by [Matt Dray](<http://matt-dray.com/>).  
-However, installing pixeltrix is not required.
+[pixeltrix package](<http://github.com/matt-dray/pixeltrix>) by [Matt Dray](<http://matt-dray.com/>).
