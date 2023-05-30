@@ -6,9 +6,9 @@
 # https://github.com/matt-dray/pixeltrix
 # Date of retrieval: 2023-05-19
 #
-# The Shiny App only uses the click_to_cells().
+# The Shiny App uses click_to_cells() and draw_pixels().
 # The other functions helped develop the package
-# (e.g., unit_tests or loading preset patterns in app).
+# (e.g., unit_tests or creating preset patterns for app).
 
 
 
@@ -195,6 +195,10 @@ click_pixels <- function(
 }
 
 
+
+# For use in server ------------------------------------------------------------
+
+
 # draw_pixels() ----
 draw_pixels <- function(m, colours  = c("white", "forestgreen")) {
 
@@ -236,7 +240,6 @@ draw_pixels <- function(m, colours  = c("white", "forestgreen")) {
 
 
 
-# For use in server ------------------------------------------------------------
 
 click_to_cell <- function(input_matrix, input_x, input_y) {
 
@@ -261,3 +264,5 @@ click_to_cell <- function(input_matrix, input_x, input_y) {
 
   return(output_coords)
 }
+
+

@@ -6,6 +6,14 @@
 
 
 
+# Preset Patterns --------------------------------------------------------------
+load("./data/preset_patterns/butterfly.Rdata")
+load("./data/preset_patterns/galaxy.Rdata")
+load("./data/preset_patterns/gun.Rdata")
+load("./data/preset_patterns/diehard.Rdata")
+load("./data/preset_patterns/spaceship.Rdata")
+
+
 # Server -----------------------------------------------------------------------
 
 server <- function(input, output, session) {
@@ -104,6 +112,95 @@ server <- function(input, output, session) {
       petri_dish(killed_dish)
     }
   )
+
+  # Preset Patterns ----
+  observeEvent(
+    input$butterfly_button,
+    {
+      automaton_running(FALSE)
+      border_reached(FALSE)
+      still_life(FALSE)
+      generation_counter(0)
+      petri_dish(butterfly)
+    }
+  )
+
+  observeEvent(
+    input$galaxy_button,
+    {
+      automaton_running(FALSE)
+      border_reached(FALSE)
+      still_life(FALSE)
+      generation_counter(0)
+      petri_dish(galaxy)
+    }
+  )
+
+  observeEvent(
+    input$gun_button,
+    {
+      automaton_running(FALSE)
+      border_reached(FALSE)
+      still_life(FALSE)
+      generation_counter(0)
+      petri_dish(gun)
+    }
+  )
+
+  observeEvent(
+    input$diehard_button,
+    {
+      automaton_running(FALSE)
+      border_reached(FALSE)
+      still_life(FALSE)
+      generation_counter(0)
+      petri_dish(diehard)
+    }
+  )
+
+  observeEvent(
+    input$spaceship_button,
+    {
+      automaton_running(FALSE)
+      border_reached(FALSE)
+      still_life(FALSE)
+      generation_counter(0)
+      petri_dish(spaceship)
+    }
+  )
+
+  observeEvent(
+    input$random_button,
+    {
+      automaton_running(FALSE)
+      border_reached(FALSE)
+      still_life(FALSE)
+      generation_counter(0)
+
+      random_dish <- petri_dish()
+      random_dish[random_dish == 1] <- 0
+
+      for (row in 1:nrow(random_dish)) {
+        for (col in 1:ncol(random_dish)) {
+
+          if (
+            (row > 15) &&
+            (row < 35) &&
+            (col > 30) &&
+            (col < 56) &&
+            (runif(1) > 0.8)
+            ) {
+            random_dish[row, col] = 1
+          }
+
+        }
+      }
+
+      petri_dish(random_dish)
+    }
+  )
+
+
 
   # Plot output ----
   output$shown_plot <- renderPlot({

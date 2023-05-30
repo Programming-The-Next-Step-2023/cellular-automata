@@ -31,7 +31,11 @@ ui <- fluidPage(
           target = "_blank",  # opens in new tab
           href = "https://en.wikipedia.org/wiki/Conway's_Game_of_Life"
         ),
-        "built by Vincent Ott",
+        "built by ",
+        a("Vincent Ott",
+          target = "_blank",
+          href = "https://github.com/vincentott"
+        ),
         "with the help of ",
         a("work",
           target = "_blank",
@@ -49,7 +53,7 @@ ui <- fluidPage(
         either be dead or alive. The cells evolve over time based on two rules:\n",
         "A live cell with two or three live neighbours survives - otherwise it dies.
         A dead cell with three live neighbours becomes a live cell.",
-        "This leads to interesting and often unpredictable behaviors."
+        "This leads to interesting and often unpredictable behavior."
       ),
       br(),
 
@@ -59,7 +63,7 @@ ui <- fluidPage(
       p("Click into the grid to bring some cells to life. ",
         "Clicking on a live cell kills it. ",
         "Try to stay in the middle of the grid as the simulation can´t
-        evolve once the border has been reached.",
+        continue once the border has been reached.",
         "Wake up the cells to watch them evolve."
       ),
       br(),
@@ -77,7 +81,7 @@ ui <- fluidPage(
       actionButton("galaxy_button", "🌀"),
       actionButton("gun_button", "🔫"),
       actionButton("diehard_button", "⌛"),
-      actionButton("weekender_button", "🚀"),
+      actionButton("spaceship_button", "🚀"),
       actionButton("random_button", "🎲"),  # 15 each row; 30 each col;
 
 
