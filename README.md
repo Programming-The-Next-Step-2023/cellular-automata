@@ -1,4 +1,4 @@
-# Lively Cells
+# livelycells
 An R Shiny App for Conway´s Game of Life
 
 ## Description
