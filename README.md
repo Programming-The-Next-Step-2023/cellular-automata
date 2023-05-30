@@ -11,4 +11,4 @@ There are also preset patterns.
 
 This package was build with the help of code from the
 [pixeltrix package](<http://github.com/matt-dray/pixeltrix>) by [Matt Dray](<http://matt-dray.com/>).  
-However, it does not require the installation of pixeltrix.
+However, installing pixeltrix is not required.
