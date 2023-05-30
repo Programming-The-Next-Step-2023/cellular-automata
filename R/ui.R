@@ -55,17 +55,18 @@ ui <- fluidPage(
         A dead cell with three live neighbours becomes a live cell.",
         "This leads to interesting and often unpredictable behavior."
       ),
-      br(),
 
       # Header ---
       h4("How to play"),
-
       p("Click into the grid to bring some cells to life. ",
         "Clicking on a live cell kills it. ",
-        "Try to stay in the middle of the grid as the simulation can´t
-        continue once the border has been reached.",
-        "Wake up the cells to watch them evolve."
-      ),
+        "Try to stay in the middle of the grid as the simulation cannot
+        continue beyond its border.",
+        "Wake up the cells to start the simulation.",
+        "Keep an eye on the status info below the grid. ",
+        "Once the cells are awake, lively, and plenty, it may take
+        a while to 🌒, ⚰️, or load a pattern."
+        ),
       br(),
 
       # Controls ----
