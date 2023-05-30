@@ -73,3 +73,4 @@ automaton <- function(input_matrix, rules, speed, max_iterations) {
 
 # draw_pixels(big_glider)
 # automaton(big_glider, "B3/S23", speed = 5, max_iterations = 100)
+
