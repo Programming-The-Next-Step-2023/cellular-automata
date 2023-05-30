@@ -243,12 +243,6 @@ server <- function(input, output, session) {
 
   })  # End user info
 
-  # output$coder_info <- shiny::renderPrint({
-  #   cat("coder_info | ", "running: ", automaton_running(),
-  #       " border: ", border_reached(),
-  #       " still life: ", still_life())
-  # })
-
   output$current_generation <- shiny::renderText({
     paste0("Generation: ", generation_counter())
   })

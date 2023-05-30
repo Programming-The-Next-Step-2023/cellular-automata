@@ -13,7 +13,7 @@ play()
 The app just starts. So, nothing is returned, I guess?
 }
 \description{
-Run it to start the app and play the Game
+Run this function to start the app and play the Game.
 }
 \details{
 For more details on the Game see its \href{https://en.wikipedia.org/wiki/Conway's_Game_of_Life}{Wikipedia article}.

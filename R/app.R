@@ -10,7 +10,7 @@
 
 #' Starts the App to Play With
 #'
-#' Run it to start the app and play the Game
+#' Run this function to start the app and play the Game.
 #'
 #' @param none There are no arguments!
 #'

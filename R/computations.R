@@ -2,6 +2,8 @@
 #
 # Shiny Life-Like Cells: Computations
 #
+#
+
 # extract_rules() and count living neighbours() to evolve() a matrix
 
 
@@ -32,7 +34,7 @@ extract_rules <- function(input_string) {
 
 
 # neighbours() -----------------------------------------------------------------
-# Counts living neighbours in a cell´s Moore neighbourhood
+# Counts living neighbours in a cell´s Moore neighbourhood (the surrounding 8)
 
 neighbours <- function(matrix, row_index, col_index) {
 
@@ -84,7 +86,7 @@ neighbours <- function(matrix, row_index, col_index) {
 
 # evolve() ---------------------------------------------------------------------
 # Takes a matrix and rule set as input
-# matrix after evolution
+# Returns a list with matrix after evolution and whether border_reached
 
 evolve <- function(input_matrix, rule_string) {
 
@@ -140,12 +142,10 @@ evolve <- function(input_matrix, rule_string) {
       if (living_neighbours %in% rules[[2]]) {  # Survival rules met?
         output_matrix[i] = 1
       }
-    }
-    # End survival computation
 
-  }
+    }  # End survival computation
 
-  # End computation output_matrix
+  }  # End computation output_matrix
 
   return(list(output_matrix, border_reached))
 }

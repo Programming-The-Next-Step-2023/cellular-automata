@@ -2,17 +2,26 @@
 #
 # Pixeltrix
 #
+#
+
 # Adapted from:
 # https://github.com/matt-dray/pixeltrix
 # Date of retrieval: 2023-05-19
-#
-# The Shiny App uses click_to_cells() and draw_pixels().
-# The other functions helped develop the package
-# (e.g., unit_tests or creating preset patterns for app).
 
 
+# The livelycells shiny app only uses click_to_cells() and draw_pixels().
+# see server.R
+# The helper functions are the backbone of those two functions.
 
-# helper functions ----
+# click_pixels() is not used by the shiny app.
+# However, it was useful to develop the package (e.g., to create preset patterns)
+# and should also be useful to maintain the package
+# (e.g., create matrices for unit tests).
+
+
+# Helper functions -------------------------------------------------------------
+
+# plot_canvas ----
 # Plot 'pixels' given the dimensions of the input matrix
 plot_canvas <- function(m, n_states, colours) {
 
@@ -42,6 +51,8 @@ plot_canvas <- function(m, n_states, colours) {
 
 }
 
+
+# locate_on_grid() ----
 # Get XY location of plotted 'pixel' that's been clicked by the user
 locate_on_grid <- function(m) {
 
@@ -79,6 +90,9 @@ locate_on_grid <- function(m) {
 
 }
 
+
+
+# update_matrix ----
 # Increment the value of the matrix that corresponds to the clicked 'pixel'
 update_matrix <- function(m, point, n_states) {
 
@@ -97,6 +111,8 @@ update_matrix <- function(m, point, n_states) {
 }
 
 
+
+# repeat_loop ----
 # Loop continuously to accept a click, update matrix values, then re-plot
 repeat_loop <- function(m, n_states, colours, grid) {
 
@@ -122,7 +138,7 @@ repeat_loop <- function(m, n_states, colours, grid) {
 }
 
 
-
+# add_grid ----
 # Draw a grid over the plotted matrix to differentiate 'pixels'
 add_grid <- function(m) {
 
@@ -167,8 +183,6 @@ add_grid <- function(m) {
   graphics::abline(h = y_lines)
 
 }
-
-
 
 
 
@@ -240,7 +254,7 @@ draw_pixels <- function(m, colours  = c("white", "forestgreen")) {
 
 
 
-
+# click_to_cell ----
 click_to_cell <- function(input_matrix, input_x, input_y) {
 
   # Pixel centres, x axis
@@ -264,5 +278,3 @@ click_to_cell <- function(input_matrix, input_x, input_y) {
 
   return(output_coords)
 }
-
-

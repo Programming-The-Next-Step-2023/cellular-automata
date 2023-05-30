@@ -48,7 +48,7 @@ test_that("evolve() does not evolve border cases and still lifes", {
   next_mat1 = evolve(mat1, "B3/S23")[[1]]
   border_reached = evolve(mat1, "B3/S23")[[2]]
   expect_equal(mat1, next_mat1)
-  expect_true(border_reached == TRUE)
+  expect_true(border_reached)
 
   # Still life: Block
   mat2 = matrix(c(rep(0, 4), c(0, 1, 1, 0), c(0, 1, 1, 0), c(rep(0, 4))),
@@ -56,7 +56,7 @@ test_that("evolve() does not evolve border cases and still lifes", {
   next_mat2 = evolve(mat2, "B3/S23")[[1]]
   border_reached = evolve(mat2, "B3/S23")[[2]]
   expect_equal(mat2, next_mat2)
-  expect_true(border_reached == FALSE)
+  expect_false(border_reached)
 
 
   # Load

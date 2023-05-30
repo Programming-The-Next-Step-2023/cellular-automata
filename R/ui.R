@@ -82,7 +82,7 @@ ui <- fluidPage(
       actionButton("gun_button", "🔫"),
       actionButton("diehard_button", "⌛"),
       actionButton("spaceship_button", "🚀"),
-      actionButton("random_button", "🎲"),  # 15 each row; 30 each col;
+      actionButton("random_button", "🎲"),
 
 
     width = 3  # Relative to mainPanel
@@ -96,11 +96,8 @@ ui <- fluidPage(
 
       # User Info ----
       textOutput("user_info"),
-      # textOutput("coder_info"),
       textOutput("current_generation"),
       textOutput("current_population"),
-
-      # verbatimTextOutput("click_info"),
 
     )  # End mainPanel
 

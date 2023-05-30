@@ -5,10 +5,10 @@
 \alias{livelycells}
 \title{An R Shiny App for Conway´s Game of Life}
 \description{
-The package has one function.
+The package has one function:
 }
 \section{Play}{
 
-\emph{play} starts the app so you can then play around with the lively cells.
+\emph{play} starts the app so you can then play around with it.
 }
 
