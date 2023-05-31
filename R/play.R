@@ -33,6 +33,6 @@ play <- function() {
 #   shiny::runApp(
 #     system.file("shiny", package = "livelycells"),
 #     display.mode = "normal",
-#     launch.browser = TRUE
+#     launch.browser = FALSE
 #   )
 # }
