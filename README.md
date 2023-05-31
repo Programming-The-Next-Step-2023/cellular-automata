@@ -1,14 +1,14 @@
-# Lively Cells
-An R Shiny App for Conway´s Game of Life and other Life-Like Cellular Automata
+# livelycells
+An R Shiny App for Conway´s Game of Life
 
 ## Description
-This is an R package which contains an R Shiny App for life-like cellular automata  
-(see https://en.wikipedia.org/wiki/Life-like_cellular_automaton).
+This is an R package which contains an R Shiny App for
+[Conway´s Game of Life](<http://wikipedia.org/wiki/Conway's_Game_of_Life>).  
+Aside from shiny, livelycells has no dependencies.
 
-At time point zero, the player uses their mouse to bring some cells in the
-automaton to life.  
-Over time, cells in the automaton are then born and survive depending on a set
-of rules.  
-By default, the rules will be those from Conway´s Game of Life  
-(see https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).  
-However, other rules can also be selected.
+At time point zero, the player uses their mouse to click some cells to life.  
+Then, the cells evolve over time and show all sorts of interesting behavior.  
+There are also preset patterns.
+
+This package was build with the help of code from the
+[pixeltrix package](<http://github.com/matt-dray/pixeltrix>) by [Matt Dray](<http://matt-dray.com/>).

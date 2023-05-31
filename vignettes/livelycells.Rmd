@@ -1,0 +1,91 @@
+---
+title: "livelycells"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{livelycells}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+<br/>
+Welcome to the livelycells package!  
+It lets you play Conway´s Game of Life in an R Shiny App.  
+<br/>
+You can find more information about the game on its
+[Wikipedia page](https://en.wikipedia.org/wiki/Conway's_Game_of_Life).  
+<br/>
+<br/>
+The first step is to load the package.
+```{r setup}
+library(livelycells)
+```
+<br/>
+<br/>
+Next, use the package´s only function to start the app.
+```{r eval=FALSE}
+play()
+```
+<br/>
+<br/>
+The app looks like this - with a sidebar on the left and a grid on the right.
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("img/1_longshot.png")
+```
+<br/>
+<br/>
+On the sidebar there are instructions...
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("img/2_instructions.png")
+```
+...and controls.
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("img/3_controls.png")
+```
+<br/>
+<br/>
+The grid is where the fun happens! Here you can click cells to life with your mouse and also kill them again.
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("img/4a_grid.png")
+knitr::include_graphics("img/4b_grid.png")
+knitr::include_graphics("img/4c_grid.png")
+```
+<br/>
+<br/>
+Below the grid there is information about the current status of the Game  
+comprising a statement, the current generation, and the current population.
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("img/5a_status.png")
+```
+<br/>
+<br/>
+Once you brought some cells to life...
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("img/5b_status.png")
+```
+<br/>
+<br/>
+you can wake them up and watch them evolve...
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("img/5c_status.png")
+```
+
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("img/5d_status.png")
+```
+<br/>
+<br/>
+<br/>
+Make sure investigate how the stored patterns evolve!
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("img/6a_preset.png")
+```
+
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("img/6b_preset.png")
+```

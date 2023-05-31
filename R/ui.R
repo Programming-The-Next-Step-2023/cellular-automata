@@ -1,119 +1,108 @@
 #
 #
-# Shiny Life-Like Cells: UI
+# livelycells: UI
 #
-# Sourced and used in app.R
+#
 
 
-
-# Source -----------------------------------------------------------------------
-
+#' @import shiny
 
 
 # UI ---------------------------------------------------------------------------
 
-ui <- shiny::fluidPage(
-
-  title = "Lively Cells / Vincent Ott",
+ui <- fluidPage(
+  title = "Lively Cells 🔬 - An R Shiny App",
 
   # TitlePanel ----
-  shiny::titlePanel(
-    shiny::h1("Lively Cells 🔬", style = "color:black")
+  titlePanel(
+    h1("Lively Cells 🔬"),
   ),
 
-
   # Sidebar layout with input and output definitions ----
-  shiny::sidebarLayout(
+  sidebarLayout(
 
     # Sidebar panel for inputs ----
-    shiny::sidebarPanel(
+    sidebarPanel(
 
       # Intro Text ---
-      shiny::h4("What is this?"),
-      shiny::p("This is an intro text to cellular automata.
-        Lorem ipsum dolor sit amet oder so. Hahahahahahahahaha!"),
-      shiny::hr(),
+      h4("What is this?"),
+      p("This is an R Shiny App for ",
+        a("Conway´s Game of Life",
+          target = "_blank",  # opens in new tab
+          href = "https://en.wikipedia.org/wiki/Conway's_Game_of_Life"
+        ),
+        "built by ",
+        a("Vincent Ott",
+          target = "_blank",
+          href = "https://github.com/vincentott"
+        ),
+        "with the help of ",
+        a("work",
+          target = "_blank",
+          href = "https://www.rostrum.blog/2022/09/24/pixeltrix/"
+        ),
+        "by ",
+        a("Matt Dray",
+          target = "_blank",
+          href = "https://www.matt-dray.com/"
+        ),
+        "."
+      ),  # End intro text
+
+      p("Conway´s Game of Life simulates cells on a grid which can
+        either be dead or alive. The cells evolve over time based on two rules:\n",
+        "A live cell with two or three live neighbours survives - otherwise it dies.
+        A dead cell with three live neighbours becomes a live cell.",
+        "This leads to all kinds of behavior."
+      ),
 
       # Header ---
-      shiny::h4("How to play"),
-
-      # Use Mouse ---
-      shiny::p("Click into the grid on the right ",
-               "to bring some cells to life.",
-               "Clicking on a living cell kills it. ☺️"),
-
-      shiny::br(),
-      shiny::p("Next, select ",
-        shiny::a("Rule Set",
-          target = "_blank",  # opens in new tab
-          href = "https://en.wikipedia.org/wiki/Life-like_cellular_automaton#A_selection_of_Life-like_rules"
-          ),
-        "& Evolution Speed:"),
-
-      # Input: Selector for rules ----
-      shiny::selectInput(
-        inputId = "rules",
-        label = "Rule Set",
-        choices = c("Life - B3/S23",
-                    "Life without Death - B3/S012345678",
-                    "Seeds - B2/S",
-                    "Replicator - B1357/S1357")
-      ),
-
-      # Speed ---
-      shiny::selectInput(
-        inputId = "evolution_speed",
-        label = "Evolution Speed (Generations per Second)",
-        choices = c("0.7",
-                    "1.0",
-                    "1.3")
-      ),
+      h4("How to play"),
+      p("Click into the grid to bring some cells to life. ",
+        "Clicking on a live cell kills it. ",
+        "Try to stay in the middle of the grid as the simulation can´t
+        continue beyond its border.",
+        "Wake up the cells to start the evolution.",
+        "Keep an eye on the status info below the grid. ",
+        "If plenty cells are evolving, it may take
+        a while to 🌒, ⚰️, or load a pattern. If
+        it takes too long, reload the website."
+        ),
+      br(),
 
       # Controls ----
-      shiny::h4("Controls"),
-      shiny::actionButton("start_button", "Wake Up ☀️"),
-      shiny::actionButton("stop_button", "Sleep 🌒"),
-      shiny::actionButton("kill_button", "⚰️"),
-      shiny::br(),
+      h4("Controls"),
+      actionButton("start_button", "Wake Up ☀️"),
+      actionButton("stop_button", "Sleep 🌒"),
+      actionButton("kill_button", "Kill all ⚰️"),
+      br(),
 
       # Load Pattern ---
-      shiny::br(),
-      shiny::selectInput(
-        inputId = "pattern",
-        label = "Preconfigured Patterns:",
-        choices = c("Oscillators",
-                    "Space Ships",
-                    "Glider Gun")
-      ),
-      shiny::actionButton("load_button", "Load selected Pattern"),
+      h5("Load a preset pattern:"),
+      actionButton("butterfly_button", "🦋"),
+      actionButton("galaxy_button", "🌀"),
+      actionButton("gun_button", "🔫"),
+      actionButton("diehard_button", "⌛"),
+      actionButton("spaceship_button", "🚀"),
+      actionButton("random_button", "🎲"),
 
-      # shiny::br(),
-      # shiny::actionButton("gen0_button", "Reinstate Generation 0"),
 
     width = 3  # Relative to mainPanel
-    ),
+    ),  # End sidePanel
 
     # Main panel for displaying outputs ----
-    shiny::mainPanel(
+    mainPanel(
 
       # Plot ----
-      shiny::plotOutput("shown_plot", height = 600, width = 1025),
+      plotOutput("shown_plot", height = 600, width = 1025, click = "plot_click"),
 
       # User Info ----
-      shiny::textOutput("sleepy_lively"),
-      shiny::textOutput("current_generation"),
-      shiny::textOutput("current_population"),
+      textOutput("user_info"),
+      textOutput("current_generation"),
+      textOutput("current_population"),
 
-      # # Submitted Automaton Arguments ----
-      # shiny::textOutput("submitted_arguments"),
-      #
-      # # Reactive Automaton Arguments ----
-      # shiny::textOutput("selected_rules"),
-      # shiny::textOutput("evolution_speed"),
-      # shiny::textOutput("max_generations")
+    )  # End mainPanel
 
-    )
+  )  # End sidebarLayout
 
-  )
-
-) # end UI
+)  # End UI

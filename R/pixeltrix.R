@@ -2,14 +2,26 @@
 #
 # Pixeltrix
 #
+#
+
 # Adapted from:
 # https://github.com/matt-dray/pixeltrix
 # Date of retrieval: 2023-05-19
-#
-# Visualizes a matrixs or 0s and 1s as a plot.
 
 
-# helper functions ----
+# The livelycells shiny app only uses click_to_cells() and draw_pixels().
+# see server.R
+# The helper functions are the backbone of those two functions.
+
+# click_pixels() is not used by the shiny app.
+# However, it was useful to develop the package (e.g., to create preset patterns)
+# and should also be useful to maintain the package
+# (e.g., create matrices for unit tests).
+
+
+# Helper functions -------------------------------------------------------------
+
+# plot_canvas ----
 # Plot 'pixels' given the dimensions of the input matrix
 plot_canvas <- function(m, n_states, colours) {
 
@@ -39,6 +51,8 @@ plot_canvas <- function(m, n_states, colours) {
 
 }
 
+
+# locate_on_grid() ----
 # Get XY location of plotted 'pixel' that's been clicked by the user
 locate_on_grid <- function(m) {
 
@@ -76,6 +90,9 @@ locate_on_grid <- function(m) {
 
 }
 
+
+
+# update_matrix ----
 # Increment the value of the matrix that corresponds to the clicked 'pixel'
 update_matrix <- function(m, point, n_states) {
 
@@ -94,6 +111,8 @@ update_matrix <- function(m, point, n_states) {
 }
 
 
+
+# repeat_loop ----
 # Loop continuously to accept a click, update matrix values, then re-plot
 repeat_loop <- function(m, n_states, colours, grid) {
 
@@ -119,7 +138,7 @@ repeat_loop <- function(m, n_states, colours, grid) {
 }
 
 
-
+# add_grid ----
 # Draw a grid over the plotted matrix to differentiate 'pixels'
 add_grid <- function(m) {
 
@@ -167,14 +186,12 @@ add_grid <- function(m) {
 
 
 
-
-
 # click_pixels() ----
 click_pixels <- function(
     n_rows   = 8L,
     n_cols   = 8L,
     n_states = 2L,
-    colours  = c("white", "forestgreen"),  #grey25
+    colours  = c("white", "forestgreen"),
     grid     = TRUE
 ) {
 
@@ -190,6 +207,10 @@ click_pixels <- function(
   m
 
 }
+
+
+
+# For use in server ------------------------------------------------------------
 
 
 # draw_pixels() ----
@@ -232,43 +253,28 @@ draw_pixels <- function(m, colours  = c("white", "forestgreen")) {
 }
 
 
-# Create some test matrices for computations -----------------------------------
-# they are used in computations.R
 
-#setwd(paste0(getwd(), "/data/test_matrices"))  # Point to folder with data
+# click_to_cell ----
+click_to_cell <- function(input_matrix, input_x, input_y) {
 
-#border_north_east = click_pixels(7, 7)
-#save(border_north_east, file = "border_north_east.Rdata")
+  # Pixel centres, x axis
+  x_n    <- ncol(input_matrix)    # number of pixels in the x dimension
+  x_unit <- 1 / (x_n - 1)         # x width of pixels
+  x_mids <- seq(0, 1, x_unit)     # full set of pixel centres on x axes
 
-#border_north = click_pixels(6, 6)
-#save(border_north, file = "border_north.Rdata")
+  # Pixel centres, y axis
+  y_n    <- nrow(input_matrix)
+  y_unit <- 1 / (y_n - 1)
+  y_mids <- seq(0, 1, y_unit)
 
-#border_north_west = click_pixels(2, 2)
-#save(border_north_west, file = "border_north_west.Rdata")
+  # Calculate distances xy from clicked point to pixel centres
+  x_diffs <- abs(input_x - x_mids)
+  y_diffs <- rev(abs(input_y - y_mids))
 
-#border_west = click_pixels(13, 22)
-#save(border_west, file = "border_west.Rdata")
+  output_coords <- list(
+    x <- which.min(y_diffs),
+    y <- which.min(x_diffs)
+  )
 
-#border_east = click_pixels(19, 8)
-#save(border_east, file = "border_east.Rdata")
-
-#border_south_east = click_pixels(5, 5)
-#save(border_south_east, file = "border_south_east.Rdata")
-
-#border_south = click_pixels(3, 3)
-#save(border_south, file = "border_south.Rdata")
-
-#border_south_west = click_pixels(7, 8)
-#save(border_south_west, file = "border_south_west.Rdata")
-
-#beehive = click_pixels(15, 15)
-#save(beehive, file = "beehive.Rdata")
-
-#toad = click_pixels(15, 15)
-#save(toad, file = "toad.Rdata")
-
-#simple_glider = click_pixels(6, 6)
-#save(simple_glider, file = "simple_glider.Rdata")
-
-#glider = click_pixels(15, 15)
-#save(glider, file = "glider.Rdata")
+  return(output_coords)
+}

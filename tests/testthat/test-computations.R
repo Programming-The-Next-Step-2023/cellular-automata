@@ -23,14 +23,20 @@ test_that("neighbours() returns correct number of living neighbour cells", {
 })
 
 
-test_that("extract_rules() yield a birth vector and survival vector", {
+test_that("extract_rules() yields usable birth and survival list", {
 
-  rules = extract_rules("B3/S012345678")
+  rules = extract_rules("B3/S23")
   birth_rules = rules[[1]]
   survival_rules = rules[[2]]
 
-  expect_equal(birth_rules, c(3))
-  expect_equal(survival_rules, c(0, 1, 2, 3, 4, 5, 6, 7, 8))
+  expect_false(0 %in% birth_rules)
+  expect_false(2 %in% birth_rules)
+  expect_true(3 %in% birth_rules)
+  expect_false(8 %in% birth_rules)
+
+  expect_true(2 %in% survival_rules)
+  expect_true(3 %in% survival_rules)
+  expect_false(4 %in% survival_rules)
 
 })
 
@@ -42,14 +48,38 @@ test_that("evolve() does not evolve border cases and still lifes", {
   next_mat1 = evolve(mat1, "B3/S23")[[1]]
   border_reached = evolve(mat1, "B3/S23")[[2]]
   expect_equal(mat1, next_mat1)
-  expect_true(border_reached == TRUE)
+  expect_true(border_reached)
 
   # Still life: Block
   mat2 = matrix(c(rep(0, 4), c(0, 1, 1, 0), c(0, 1, 1, 0), c(rep(0, 4))),
-                  ncol = 4)
+                ncol = 4)
   next_mat2 = evolve(mat2, "B3/S23")[[1]]
   border_reached = evolve(mat2, "B3/S23")[[2]]
   expect_equal(mat2, next_mat2)
-  expect_true(border_reached == FALSE)
+  expect_false(border_reached)
+
+
+  # Load
+  folder_path = paste0(testthat::test_path(), "/testdata/evolve_checks")
+  evolve_checks = as.list(dir(path = folder_path))
+  for (i in 1:length(evolve_checks)) {
+    file_path = paste0(folder_path, "/", evolve_checks[i])
+    load(file_path)
+  }
+
+  # Still life + Glider approaching border
+  testthat::expect_equal(evolve(evo1_gen0, "B3/S23")[[1]], evo1_gen1)
+  testthat::expect_equal(evolve(evo1_gen0, "B3/S23")[[2]], FALSE)
+
+  testthat::expect_equal(evolve(evo1_gen1, "B3/S23")[[1]], evo1_gen1)
+  testthat::expect_equal(evolve(evo1_gen1, "B3/S23")[[2]], TRUE)
+
+  # Border lines
+  testthat::expect_equal(evolve(verti_line_gen0, "B3/S23")[[1]], verti_line_gen1)
+  testthat::expect_equal(evolve(hori_line_gen0, "B3/S23")[[1]], hori_line_gen1)
 
 })
+
+
+
+
