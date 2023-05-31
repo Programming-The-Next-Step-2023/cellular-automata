@@ -5,6 +5,17 @@
 #
 
 
+# Source redundant scripts for deployment
+source("redundant_4_deployment/scripts/pixeltrix.R")
+source("redundant_4_deployment/scripts/computations.R")
+
+# Source redundant preset patterns for deployment
+load("redundant_4_deployment/data/butterfly.rda")
+load("redundant_4_deployment/data/galaxy.rda")
+load("redundant_4_deployment/data/gun.rda")
+load("redundant_4_deployment/data/diehard.rda")
+load("redundant_4_deployment/data/spaceship.rda")
+
 
 # Server -----------------------------------------------------------------------
 

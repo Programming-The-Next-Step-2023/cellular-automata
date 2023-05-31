@@ -1,0 +1,13 @@
+name: livelycells
+title: livelycells
+username:
+account: vincentott
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9221237
+bundleId: 7287312
+url: https://vincentott.shinyapps.io/livelycells/
+when: 1685548454.88624
+lastSyncTime: 1685548454.88625
+asMultiple: FALSE
+asStatic: FALSE
