@@ -1,6 +1,6 @@
 #
 #
-# Shiny Life-Like Cells: Computations
+# livelycells: Computations
 #
 #
 

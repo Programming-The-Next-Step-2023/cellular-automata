@@ -1,6 +1,6 @@
 #
 #
-# Shiny Life-Like Cells: UI
+# livelycells: UI
 #
 #
 
@@ -53,19 +53,20 @@ ui <- fluidPage(
         either be dead or alive. The cells evolve over time based on two rules:\n",
         "A live cell with two or three live neighbours survives - otherwise it dies.
         A dead cell with three live neighbours becomes a live cell.",
-        "This leads to interesting and often unpredictable behavior."
+        "This leads to all kinds of behavior."
       ),
 
       # Header ---
       h4("How to play"),
       p("Click into the grid to bring some cells to life. ",
         "Clicking on a live cell kills it. ",
-        "Try to stay in the middle of the grid as the simulation cannot
+        "Try to stay in the middle of the grid as the simulation can´t
         continue beyond its border.",
-        "Wake up the cells to start the simulation.",
+        "Wake up the cells to start the evolution.",
         "Keep an eye on the status info below the grid. ",
-        "Once the cells are awake, lively, and plenty, it may take
-        a while to 🌒, ⚰️, or load a pattern."
+        "If plenty cells are evolving, it may take
+        a while to 🌒, ⚰️, or load a pattern. If
+        it takes too long, reload the website."
         ),
       br(),
 
@@ -77,7 +78,7 @@ ui <- fluidPage(
       br(),
 
       # Load Pattern ---
-      h5("Load a pattern:"),
+      h5("Load a preset pattern:"),
       actionButton("butterfly_button", "🦋"),
       actionButton("galaxy_button", "🌀"),
       actionButton("gun_button", "🔫"),

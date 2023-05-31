@@ -1,6 +1,6 @@
 #
 #
-# Shiny Life-Like Cells: App (Main)
+# livelycells: Play
 #
 #
 
@@ -25,3 +25,14 @@
 play <- function() {
   shinyApp(ui = ui, server = server)
 }
+
+
+# for deployment
+
+# play <- function() {
+#   shiny::runApp(
+#     system.file("shiny", package = "livelycells"),
+#     display.mode = "normal",
+#     launch.browser = TRUE
+#   )
+# }
