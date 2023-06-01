@@ -6,6 +6,11 @@
 
 
 # Source redundant scripts for deployment
+# this leads to a warning msg for running
+# devtools::test()
+# - BUT only after having run play()
+# - which is not problem in itself
+# - and also should not happen as testing comes before using
 source("redundant_4_deployment/scripts/pixeltrix.R")
 source("redundant_4_deployment/scripts/computations.R")
 
