@@ -17,9 +17,7 @@ There are also preset patterns which can be loaded.
 ## Installation
 To install and play the game locally, use  
 `devtools::install_github("Programming-The-Next-Step-2023/livelycells")`  
-in RStudio and then open the app with  
-`livelycells::play()`  
-in a web browser.
+in RStudio and then open the app with `livelycells::play()` in a web browser.
 
 
 ## Dependencies, Credits, Copyright
