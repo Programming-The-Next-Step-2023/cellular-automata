@@ -1,10 +1,9 @@
 ---
 title: "livelycells"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{livelycells}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output:
+  rmarkdown::html_vignette: default
+vignette: "%\\VignetteIndexEntry{livelycells} %\\VignetteEngine{knitr::rmarkdown}
+  %\\VignetteEncoding{UTF-8}\n"
 ---
 
 ```{r, include = FALSE}
@@ -81,7 +80,7 @@ knitr::include_graphics("img/5d_status.png")
 <br/>
 <br/>
 <br/>
-Make sure investigate how the stored patterns evolve!
+Make sure investigate how these patterns evolve!
 ```{r out.width = '100%', echo = FALSE}
 knitr::include_graphics("img/6a_preset.png")
 ```
