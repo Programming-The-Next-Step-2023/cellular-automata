@@ -1,5 +1,5 @@
 # livelycells
-An R Shiny App for Conway´s Game of Life. 
+An R Shiny App for Conway´s Game of Life.  
 [click here to play it online in your browser](<https://vincentott.shinyapps.io/livelycells/>)
 
 ## Description
@@ -15,9 +15,11 @@ Then, the cells evolve over time and show all sorts of interesting behavior.
 There are also preset patterns which can be loaded.
 
 ## Installation
-To install and play the game locally, use
-`devtools::install_github("Programming-The-Next-Step-2023/livelycells")` in
-RStudio and then open the app with `livelycells::play()` in a web browser.
+To install and play the game locally, use  
+`devtools::install_github("Programming-The-Next-Step-2023/livelycells")`  
+in RStudio and then open the app with  
+`livelycells::play()`  
+in a web browser.
 
 
 ## Dependencies, Credits, Copyright
