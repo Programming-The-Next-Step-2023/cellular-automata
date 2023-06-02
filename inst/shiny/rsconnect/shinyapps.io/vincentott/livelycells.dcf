@@ -5,9 +5,9 @@ account: vincentott
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9221237
-bundleId: 7295751
+bundleId: 7296001
 url: https://vincentott.shinyapps.io/livelycells/
-when: 1685694809.95768
-lastSyncTime: 1685694809.9577
+when: 1685699546.40774
+lastSyncTime: 1685699546.40775
 asMultiple: FALSE
 asStatic: FALSE
