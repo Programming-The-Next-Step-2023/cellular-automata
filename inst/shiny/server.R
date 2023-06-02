@@ -21,7 +21,10 @@ load("redundant_4_deployment/data/spaceship.rda")
 # Remove sourced stuff again if run locally in order to avoid conflicts
 if (("livelycells" %in% loadedNamespaces())) {
 
-  suppressWarnings({
+  suppressWarnings({  # maybe suppressWarnings is not necessary here
+                      # but I did not want to take the risk and leave it out
+                      # bc I lacked the time to check what would happen
+                      # if I did
     rm(list = c(
       "click_to_cell", "draw_pixels",
       "evolve", "extract_rules", "neighbours",
