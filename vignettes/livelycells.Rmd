@@ -1,10 +1,9 @@
 ---
 title: "livelycells"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{livelycells}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output:
+  rmarkdown::html_vignette: default
+vignette: "%\\VignetteIndexEntry{livelycells} %\\VignetteEngine{knitr::rmarkdown}
+  %\\VignetteEncoding{UTF-8}\n"
 ---
 
 ```{r, include = FALSE}
@@ -27,7 +26,7 @@ library(livelycells)
 ```
 <br/>
 <br/>
-Next, use the package´s only function to start the app.
+Next, use the package´s only function to start the app in your browser.
 ```{r eval=FALSE}
 play()
 ```
@@ -40,52 +39,66 @@ knitr::include_graphics("img/1_longshot.png")
 <br/>
 <br/>
 On the sidebar there are instructions...
-```{r out.width = '100%', echo = FALSE}
+<br/>
+```{r out.width = '70%', echo = FALSE}
 knitr::include_graphics("img/2_instructions.png")
 ```
+<br/>
 ...and controls.
-```{r out.width = '100%', echo = FALSE}
+<br/>
+```{r out.width = '70%', echo = FALSE}
 knitr::include_graphics("img/3_controls.png")
 ```
 <br/>
 <br/>
 The grid is where the fun happens! Here you can click cells to life with your mouse and also kill them again.
-```{r out.width = '100%', echo = FALSE}
+<br/>
+```{r out.width = '50%', echo = FALSE}
 knitr::include_graphics("img/4a_grid.png")
+```
+
+```{r out.width = '50%', echo = FALSE}
 knitr::include_graphics("img/4b_grid.png")
+```
+
+```{r out.width = '50%', echo = FALSE}
 knitr::include_graphics("img/4c_grid.png")
 ```
 <br/>
 <br/>
 Below the grid there is information about the current status of the Game  
 comprising a statement, the current generation, and the current population.
-```{r out.width = '100%', echo = FALSE}
+<br/>
+```{r out.width = '50%', echo = FALSE}
 knitr::include_graphics("img/5a_status.png")
 ```
 <br/>
 <br/>
 Once you brought some cells to life...
-```{r out.width = '100%', echo = FALSE}
+<br/>
+```{r out.width = '50%', echo = FALSE}
 knitr::include_graphics("img/5b_status.png")
 ```
 <br/>
 <br/>
 you can wake them up and watch them evolve...
-```{r out.width = '100%', echo = FALSE}
+<br/>
+```{r out.width = '50%', echo = FALSE}
 knitr::include_graphics("img/5c_status.png")
 ```
 
-```{r out.width = '100%', echo = FALSE}
+```{r out.width = '50%', echo = FALSE}
 knitr::include_graphics("img/5d_status.png")
 ```
 <br/>
 <br/>
 <br/>
-Make sure investigate how the stored patterns evolve!
-```{r out.width = '100%', echo = FALSE}
+Make sure investigate how these patterns evolve!
+<br/>
+```{r out.width = '70%', echo = FALSE}
 knitr::include_graphics("img/6a_preset.png")
 ```
 
-```{r out.width = '100%', echo = FALSE}
+```{r out.width = '70%', echo = FALSE}
 knitr::include_graphics("img/6b_preset.png")
 ```

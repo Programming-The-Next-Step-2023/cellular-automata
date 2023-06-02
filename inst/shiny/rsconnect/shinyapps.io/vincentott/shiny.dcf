@@ -1,0 +1,13 @@
+name: shiny
+title: shiny
+username:
+account: vincentott
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9222790
+bundleId: 7287260
+url: https://vincentott.shinyapps.io/shiny/
+when: 1685547976.27158
+lastSyncTime: 1685547976.27159
+asMultiple: FALSE
+asStatic: FALSE

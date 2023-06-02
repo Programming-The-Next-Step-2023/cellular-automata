@@ -78,7 +78,7 @@ ui <- fluidPage(
       br(),
 
       # Load Pattern ---
-      h5("Load a preset pattern:"),
+      h5("Load a pattern:"),
       actionButton("butterfly_button", "🦋"),
       actionButton("galaxy_button", "🌀"),
       actionButton("gun_button", "🔫"),

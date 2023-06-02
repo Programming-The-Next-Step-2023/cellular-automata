@@ -6,6 +6,57 @@
 
 
 
+# Source redundant scripts for deployment --------------------------------------
+
+# The following leads to conflicts/a warning when executing
+# devtools::test()
+# AFTER executing
+# play()
+# as server.R sources functions to the global environment
+# with the same names as the livelycells functions.
+
+# It was necessary to code it like that, because in order to
+# deploy the app, shinyapps.io needs access to the livelycells library.
+
+# However, livelycells is not on CRAN, so I had to source() instead of
+# simply using
+# library(livelycells)
+
+# Here are three reasons why this is not a problem:
+
+# 1)
+# The app still works as intended.
+# E.g., you can run play() multiple times
+# and the hidden functions also continue to work.
+# (There is only redundancy for the sake of deployment).
+
+# 2)
+# Testing usually happens before using.
+# Thus, devtools::test() likely won´t raise a warning, since play()
+# has not been executed yet.
+
+# 3)
+# Having executed play, you can simply run
+# rm(list = c("click_to_cell", "draw_pixels", "evolve", "extract_rules",
+# "neighbours"))
+# to resolve these redundancies.
+# I also added this command to the unit tests, so that testing twice
+# does not raise a warning anymore.
+# Unfortunatly, I was not able to incorporate it into the play() function
+# so that it gets removed right again after being redundantly sourced.
+# Also, unfortunately, I could not incorporate it into the unittest
+# so that it works when executing devtools:test() for the first time after play().
+source("redundant_4_deployment/scripts/pixeltrix.R")
+source("redundant_4_deployment/scripts/computations.R")
+
+load("redundant_4_deployment/data/butterfly.rda")
+load("redundant_4_deployment/data/galaxy.rda")
+load("redundant_4_deployment/data/gun.rda")
+load("redundant_4_deployment/data/diehard.rda")
+load("redundant_4_deployment/data/spaceship.rda")
+
+
+
 # Server -----------------------------------------------------------------------
 
 server <- function(input, output, session) {
