@@ -1,6 +1,7 @@
 library("livelycells")
 
 
+
 test_that("neighbours() returns correct number of living neighbour cells", {
 
   # Load border cells

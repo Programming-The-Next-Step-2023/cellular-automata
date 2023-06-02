@@ -6,11 +6,13 @@
 
 
 # Source redundant scripts for deployment
-# this leads to a warning msg for running
+# this leads to conflicts when running
 # devtools::test()
-# - BUT only after having run play()
-# - which is not problem in itself
-# - and also should not happen as testing comes before using
+# as server.R sources functions to the global environment
+# with the same names as the livelycells functions
+# -> BUT only after having run play()
+# -> which, first, is not problem in itself - because the app still works after
+# -> and, second, also should not happen as testing comes before using
 source("redundant_4_deployment/scripts/pixeltrix.R")
 source("redundant_4_deployment/scripts/computations.R")
 
