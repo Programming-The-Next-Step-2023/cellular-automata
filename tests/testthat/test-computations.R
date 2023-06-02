@@ -1,19 +1,6 @@
 library("livelycells")
 
 
-# See server.R for more info on why this is here.
-# Executing devtools::test() twice
-# should never yield a warning on the second time.
-suppressWarnings({
-  rm(list = c(
-    "click_to_cell", "draw_pixels",
-    "evolve", "extract_rules",
-    "neighbours"
-  ),
-  envir = .GlobalEnv
-  )
-})
-
 
 test_that("neighbours() returns correct number of living neighbour cells", {
 
